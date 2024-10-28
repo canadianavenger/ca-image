@@ -2,8 +2,6 @@
 Core imaging library for working with paletted images for my various projects. This repository contains no stand-alone executables. Instead it is meant to be included as a git module and linked into other projects.
 
 ## Library contents
-Some of these utility functions replicate functions or capabilities within gnu-libc, but are provided here to be compiler agnostic. 
-
 - `image.h` - types, macros, and function declarations for the base image structure
   - `image.c`: allocation and freeing routines for the image structure
 - `pal-tools.h` - types, macros, and function declarations for maniplating palettes
