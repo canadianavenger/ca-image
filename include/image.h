@@ -27,17 +27,17 @@ typedef struct {
     img_pal_entry_t  *pal;
     uint8_t  data[];    // pixel data stored as one byte per pixel
                         // palette RGB data is appended after image data
-} quick_image_t;
+} pal_image_t;
 
 /// @brief allocates and initializes space for an image of the defined size
 /// @param width   width in pixels of the image
 /// @param height  height in pixels of the image
 /// @param colours maximum number of colours the palette will contain
 /// @return returns a pointer to the allocated memory, or NULL
-quick_image_t *image_alloc(unsigned width, unsigned height, unsigned colours);
+pal_image_t *image_alloc(unsigned width, unsigned height, unsigned colours);
 
 /// @brief frees the memory allocated using image_alloc()
 /// @param img // pointer to the previously allocated memory
-void image_free(quick_image_t *img);
+void image_free(pal_image_t *img);
 
 #endif
