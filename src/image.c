@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <image.h>
 
 pal_image_t *image_alloc(unsigned width, unsigned height, unsigned colours) {
