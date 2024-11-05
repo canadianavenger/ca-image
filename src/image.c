@@ -10,6 +10,7 @@ pal_image_t *image_alloc(unsigned width, unsigned height, unsigned colours) {
     img->width = width;
     img->height = height;
     img->colours = colours;
+    img->transparent = -1;
     img->image_size = width * height;
     img->pal = (img_pal_entry_t  *)&img->data[img->image_size];
     return img;

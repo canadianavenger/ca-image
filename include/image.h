@@ -20,13 +20,14 @@ typedef struct {
 
 /// @brief neutral container for storing paletted images
 typedef struct {
-    unsigned width;      // width of image in pixels
-    unsigned height;     // height of image in pixels
-    unsigned colours;    // number of palette entries
-    size_t   image_size; // size of image in bytes. (also defines the offset to the start of the palette data)
+    unsigned width;       // width of image in pixels
+    unsigned height;      // height of image in pixels
+    unsigned colours;     // number of palette entries
+    int      transparent; // index of transparent colour, -1 if not used
+    size_t   image_size;  // size of image in bytes. (also defines the offset to the start of the palette data)
     img_pal_entry_t  *pal;
-    uint8_t  data[];    // pixel data stored as one byte per pixel
-                        // palette RGB data is appended after image data
+    uint8_t  data[];      // pixel data stored as one byte per pixel
+                          // palette RGB data is appended after image data
 } pal_image_t;
 
 /// @brief allocates and initializes space for an image of the defined size
