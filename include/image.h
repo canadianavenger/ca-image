@@ -19,15 +19,20 @@ typedef struct {
 } img_pal_entry_t;
 
 /// @brief neutral container for storing paletted images
+/// default arrangement is [pixel data][extra data][palette data]
+/// pointers may be re-ordered if desired
+/// code should use the pointers and not assume any arrangement in 
 typedef struct {
     unsigned width;       // width of image in pixels
     unsigned height;      // height of image in pixels
-    unsigned colours;     // number of palette entries
+    unsigned colours;     // number of palette entries (this times size of img_pal_entry_t is the palette size in bytes)
     int      transparent; // index of transparent colour, -1 if not used
-    size_t   image_size;  // size of image in bytes. (also defines the offset to the start of the palette data)
-    img_pal_entry_t  *pal;
-    uint8_t  data[];      // pixel data stored as one byte per pixel
-                          // palette RGB data is appended after image data
+    size_t   image_size;  // size of image in bytes. 
+    size_t   extra_size;  // size of additional data allocation space
+    img_pal_entry_t  *pal;// poinnter to the palette RGB data in buf[] 
+    uint8_t  *extra;      // pointer to the 'extra' data in buf[]
+    uint8_t  *pixels;     // pointer to the pixel data in buf[]
+    uint8_t  buf[];       // our allocated data buffer
 } pal_image_t;
 
 /// @brief allocates and initializes space for an image of the defined size
@@ -35,7 +40,7 @@ typedef struct {
 /// @param height  height in pixels of the image
 /// @param colours maximum number of colours the palette will contain
 /// @return returns a pointer to the allocated memory, or NULL
-pal_image_t *image_alloc(unsigned width, unsigned height, unsigned colours);
+pal_image_t *image_alloc(unsigned int width, unsigned int height, unsigned int colours, unsigned int extra);
 
 /// @brief frees the memory allocated using image_alloc()
 /// @param img // pointer to the previously allocated memory
